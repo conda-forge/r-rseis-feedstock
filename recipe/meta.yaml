@@ -1,5 +1,4 @@
-{% set version = '3.7-4' %}
-
+{% set version = '3.8-3' %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,37 +9,40 @@ package:
 source:
   fn: RSEIS_{{ version }}.tar.gz
   url:
-    - https://cran.r-project.org/src/contrib/RSEIS_{{ version }}.tar.gz
-    - https://cran.r-project.org/src/contrib/Archive/RSEIS/RSEIS_{{ version }}.tar.gz
-  sha256: fd5e7769cf9fde240c9fcbb22b8453e0277d7cf4572005ce671bb274f0a3e17b
+    - {{ cran_mirror }}/src/contrib/RSEIS_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/Archive/RSEIS/RSEIS_{{ version }}.tar.gz
+  sha256: 25bad3c7533cef6a709150e6fe7f4d6232ec7f995187ff7d3b7feb1372203be3
 
 build:
   merge_build_host: True  # [win]
-  number: 1
+  number: 0
   skip: true  # [win32]
-
   rpaths:
     - lib/R/lib/
     - lib/
 
 requirements:
   build:
-    - posix                # [win]
-    - {{ compiler('c') }}        # [unix]
-    - {{ compiler('m2w64_c') }}  # [win]
+    - {{ compiler('c') }}        # [not win]
+    - {{native}}toolchain        # [win]
+    - {{posix}}filesystem        # [win]
+    - {{posix}}make
+    - {{posix}}sed               # [win]
+    - {{posix}}coreutils         # [win]
+    - {{posix}}zip               # [win]
   host:
     - r-base
     - r-rpmg
     - r-rwave
-
   run:
     - r-base
+    - {{native}}gcc-libs         # [win]
     - r-rpmg
     - r-rwave
 
 test:
   commands:
-    - $R -e "library('RSEIS')"  # [not win]
+    - $R -e "library('RSEIS')"           # [not win]
     - "\"%R%\" -e \"library('RSEIS')\""  # [win]
 
 about:
@@ -50,6 +52,8 @@ about:
     wavelet transforms, particle motion, hodograms.  Includes general time-series tools,
     plotting, filtering, interactive display.
   license_family: GPL3
+  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3'  # [unix]
+  license_file: '{{ environ["PREFIX"] }}\R\share\licenses\GPL-3'  # [win]
 
 extra:
   recipe-maintainers:
@@ -57,3 +61,5 @@ extra:
     - bgruening
     - daler
     - jdblischak
+    - cbrueffer
+    - dbast
