@@ -1,4 +1,4 @@
-{% set version = '3.8-3' %}
+{% set version = '3.9-0' %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -7,23 +7,21 @@ package:
   version: {{ version|replace("-", "_") }}
 
 source:
-  fn: RSEIS_{{ version }}.tar.gz
   url:
     - {{ cran_mirror }}/src/contrib/RSEIS_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/RSEIS/RSEIS_{{ version }}.tar.gz
-  sha256: 25bad3c7533cef6a709150e6fe7f4d6232ec7f995187ff7d3b7feb1372203be3
+  sha256: d158dde95bf755e48fa22fd14a4811e169e6075796c650d9e07e6683db54559a
 
 build:
   merge_build_host: True  # [win]
-  number: 1001
-  skip: true  # [win32]
+  number: 0
   rpaths:
     - lib/R/lib/
     - lib/
 
 requirements:
   build:
-    - {{ compiler('c') }}        # [not win]
+    - {{ compiler('c') }}              # [not win]
     - {{ compiler('m2w64_c') }}        # [win]
     - {{posix}}filesystem        # [win]
     - {{posix}}make
@@ -47,19 +45,33 @@ test:
 
 about:
   home: https://CRAN.R-project.org/package=RSEIS
-  license: GPL (>= 2)
+  license: GPL-2
   summary: Multiple interactive codes to view and analyze seismic data, via spectrum analysis,
     wavelet transforms, particle motion, hodograms.  Includes general time-series tools,
     plotting, filtering, interactive display.
-  license_family: GPL3
-  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3'
+  license_family: GPL2
+  license_file:
+    - '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2'
 
 extra:
   recipe-maintainers:
     - conda-forge/r
-    - johanneskoester
-    - bgruening
-    - daler
-    - jdblischak
-    - cbrueffer
-    - dbast
+
+# Package: RSEIS
+# Type: Package
+# Title: Seismic Time Series Analysis Tools
+# Version: 3.9-0
+# Date: 2019-09-15
+# Depends: R (>= 3.0)
+# Imports: RPMG, Rwave
+# Suggests: stats
+# Authors@R: c(person(given="Jonathan M.", family="Lees", role = c("aut", "cre"),email = "jonathan.lees@unc.edu"), person(given="Jake", family="Anderson", role = "ctb", email = "ajakef@gmail.com"), person(given='Leonard', family='Lisapaly', role = "ctb", email = "leonardl@fisika.ui.ac.id"), person(given='Dave', family='Harris', role=c('aut', 'cph') ) )
+# Author: Jonathan M. Lees [aut, cre], Jake Anderson [ctb], Leonard Lisapaly [ctb], Dave Harris [aut, cph]
+# Maintainer: Jonathan M. Lees <jonathan.lees@unc.edu>
+# Description: Multiple interactive codes to view and analyze seismic data, via spectrum analysis, wavelet transforms, particle motion, hodograms.  Includes general time-series tools, plotting, filtering, interactive display.
+# License: GPL (>= 2)
+# Copyright: see inst/COPYRIGHTS
+# Packaged: 2019-09-18 17:39:37 UTC; lees
+# NeedsCompilation: yes
+# Repository: CRAN
+# Date/Publication: 2019-09-18 19:20:05 UTC
