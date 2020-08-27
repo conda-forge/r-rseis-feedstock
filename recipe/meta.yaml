@@ -1,4 +1,4 @@
-{% set version = '3.9-0' %}
+{% set version = "3.9-3" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,11 +10,11 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/RSEIS_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/RSEIS/RSEIS_{{ version }}.tar.gz
-  sha256: d158dde95bf755e48fa22fd14a4811e169e6075796c650d9e07e6683db54559a
+  sha256: bc70e1db530294b25c830ecfe91de9da94a8d95d566bee43c864d4cd88d337f3
 
 build:
-  merge_build_host: True  # [win]
-  number: 1
+  merge_build_host: true  # [win]
+  number: 0
   rpaths:
     - lib/R/lib/
     - lib/
@@ -46,12 +46,10 @@ test:
 about:
   home: https://CRAN.R-project.org/package=RSEIS
   license: GPL-2
-  summary: Multiple interactive codes to view and analyze seismic data, via spectrum analysis,
-    wavelet transforms, particle motion, hodograms.  Includes general time-series tools,
-    plotting, filtering, interactive display.
+  summary: Multiple interactive codes to view and analyze seismic data, via spectrum analysis, wavelet transforms, particle motion, hodograms.  Includes general time-series tools, plotting, filtering, interactive display.
   license_family: GPL2
   license_file:
-    - '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2'
+    - {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2
 
 extra:
   recipe-maintainers:
