@@ -45,7 +45,7 @@ test:
 
 about:
   home: https://CRAN.R-project.org/package=RSEIS
-  license: GPL-2
+  license: GPL-2.0-or-later
   summary: Multiple interactive codes to view and analyze seismic data, via spectrum analysis, wavelet transforms, particle motion, hodograms.  Includes general time-series tools, plotting, filtering, interactive display.
   license_family: GPL2
   license_file:
