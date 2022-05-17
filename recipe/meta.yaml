@@ -1,4 +1,4 @@
-{% set version = "4.0-3" %}
+{% set version = "4.1-1" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,7 +10,7 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/RSEIS_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/RSEIS/RSEIS_{{ version }}.tar.gz
-  sha256: 109e7a835d17264ebd342dc8574bc9a137cdd89c4bfbb0b92154c723cd4482cf
+  sha256: 4534dfd056af8efab0adc6d8c0934ba6f01af1983b73524cc58f1bf86fab12a7
 
 build:
   merge_build_host: true  # [win]
