@@ -3,6 +3,7 @@ About r-rseis-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/r-rseis-feedstock/blob/main/LICENSE.txt)
 
+
 About r-rseis
 -------------
 
@@ -11,6 +12,7 @@ Home: https://CRAN.R-project.org/package=RSEIS
 Package license: GPL-2.0-or-later
 
 Summary: Multiple interactive codes to view and analyze seismic data, via spectrum analysis, wavelet transforms, particle motion, hodograms.  Includes general time-series tools, plotting, filtering, interactive display.
+
 About r-rseis
 -------------
 
