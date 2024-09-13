@@ -1,4 +1,4 @@
-{% set version = "4.2-0" %}
+{% set version = "4.2-4" %}
 {% set posix = 'm2-' if win else '' %}
 
 package:
@@ -9,10 +9,10 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/RSEIS_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/RSEIS/RSEIS_{{ version }}.tar.gz
-  sha256: 93ec391f69660fffdeee79a16b312522dada399a83a35758e69422145e682d14
+  sha256: 7a9b04135eaf6a6e6a2bcea75db5a4ee36888f1d1a1a2c2d3b07889a4dd0cfaa
 
 build:
-  number: 1
+  number: 0
   rpaths:
     - lib/R/lib/
     - lib/
